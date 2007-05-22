@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby 
 
 require 'rubygems'
-require 'gembuilder'
+require 'gembuilderlib'
 require 'optparse'
 
 opts = OptionParser.new
@@ -30,7 +30,7 @@ argv.each do |gem|
     next
   end
 
-  gem_builder = GemBuilder.new(gem)
+  gem_builder = GemBuilderLib.new(gem)
 
   puts "Unpacking #{gem}"
   gem_builder.unpack_gem

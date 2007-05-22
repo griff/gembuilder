@@ -7,9 +7,8 @@ require "find"
 require "fileutils"
 Gem.manage_gems
 
-
-class GemBuilder
-  VERSION = '1.1.0'
+class GemBuilderLib
+  VERSION = '1.1.1'
   OBJEXT = ".#{Config::CONFIG["OBJEXT"]}"
 
   # Helper that will do it all
