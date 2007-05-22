@@ -1,6 +1,6 @@
 gembuilder
     by Patrick Hurley
-    http://www.rubyforge.org/
+    http://rubyforge.org/projects/gembuilder/
 
 == DESCRIPTION:
   

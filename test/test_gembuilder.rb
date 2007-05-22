@@ -2,15 +2,17 @@
 # Calling all interested testers -- how could I write better tests for this
 # type of code? let me know at phurley@gmail.com -- Thanks!!!
 # 
-# Probably should put all the tests in one methods 
-# and test them inline?
+# Could put all the tests in one methods and test them inline? 
+# this is an optimization, so I am holding off, the test time 
+# is not too bad now that I use a simple project.
+# 
+# Add tests for complex gems (with multiple extensions)
 # 
 # Should probably verify that the gem is installable 
 # as well, but I am not sure how far to go down that
 # road (probably all the way, but it seems so cludgy 
 # already)
 # 
-# Help me :-) 
 # And thanks to zenspider for ZenTest -- great stuff
 # 
 require "test/unit"
