@@ -3,5 +3,5 @@ Manifest.txt
 README.txt
 Rakefile
 bin/gembuilder
-lib/gembuilder.rb
-test/test_gembuilder.rb
+lib/gembuilderlib.rb
+test/test_gembuilderlib.rb
