@@ -34,7 +34,7 @@ class TestGembuilder < Test::Unit::TestCase
     # testing to cleanup -- somebody save me from my own
     # insanity
     @gb.cleanup
-    File.rm('helloc-1.0.0.*.gem') rescue nil
+    File.rm('helloc-1.0.0-*.gem') rescue nil
   end
 
   def assert_file_exists(fname, msg = "The file #{fname} should exist and does not.")
