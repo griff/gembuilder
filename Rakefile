@@ -2,9 +2,9 @@
 
 require 'rubygems'
 require 'hoe'
-require './lib/gembuilder.rb'
+require './lib/gembuilderlib.rb'
 
-Hoe.new('gembuilder', GemBuilder::VERSION) do |p|
+Hoe.new('gembuilder', GemBuilderLib::VERSION) do |p|
   p.rubyforge_name = 'gembuilder'
   p.author = 'Patrick Hurley'
   p.email = 'phurley@gmail.com'
