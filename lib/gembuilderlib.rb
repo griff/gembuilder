@@ -13,7 +13,7 @@ class GemBuilderLib
 
   # Helper that will do it all
   def self.[](gem,conservative=false)
-    gem_builder = GemBuilder.new(gem)
+    gem_builder = GemBuilderLib.new(gem)
     gem_builder.unpack_gem
     gem_builder.build_extensions
     gem_builder.fix_gemspec(conservative)

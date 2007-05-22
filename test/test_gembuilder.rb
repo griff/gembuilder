@@ -16,7 +16,7 @@
 # And thanks to zenspider for ZenTest -- great stuff
 # 
 require "test/unit"
-require "gembuilder"
+require "gembuilderlib"
 
 class TestGembuilder < Test::Unit::TestCase
   GEMNAME = 'helloc-1.0.0.gem'
@@ -28,7 +28,7 @@ class TestGembuilder < Test::Unit::TestCase
     # slowing the tests
     #
     Dir.chdir "test" rescue nil 
-    @gb = GemBuilder.new(GEMNAME)
+    @gb = GemBuilderLib.new(GEMNAME)
   end
   
   def teardown
@@ -52,7 +52,7 @@ class TestGembuilder < Test::Unit::TestCase
   end
 
   def test_class_doit_all_method
-    GemBuilder[GEMNAME]
+    GemBuilderLib[GEMNAME]
     
     assert_file_exists("helloc-1.0.0-#{Config::CONFIG['arch']}.gem")   
     # not sure how to verify that the temp directory is properly cleaned up
