@@ -4,4 +4,5 @@ README.txt
 Rakefile
 bin/gembuilder
 lib/gembuilderlib.rb
+lib/gembuilder/version.rb
 test/test_gembuilderlib.rb

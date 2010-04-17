@@ -5,10 +5,10 @@ require "rubygems"
 require "tmpdir"
 require "find"
 require "fileutils"
-Gem.manage_gems
+require "rubygems/installer"
+require "gembuilder/version"
 
 class GemBuilderLib
-  VERSION = '1.1.1'
   OBJEXT = ".#{Config::CONFIG["OBJEXT"]}"
 
   # Helper that will do it all

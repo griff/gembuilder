@@ -2,17 +2,18 @@
 
 require 'rubygems'
 require 'hoe'
-require './lib/gembuilderlib.rb'
+require './lib/gembuilder/version.rb'
 
-Hoe.new('gembuilder', GemBuilderLib::VERSION) do |p|
-  p.rubyforge_name = 'gembuilder'
-  p.author = 'Patrick Hurley'
-  p.email = 'phurley@gmail.com'
+Hoe.spec('gembuilder') do
+  self.version = GemBuilderLib::VERSION
+  self.author = 'Patrick Hurley'
+  self.email = 'phurley@gmail.com'
 
-  p.summary = 'Create a binary gem, for the current platform.'
-  p.description = p.paragraphs_of('README.txt', 2..5).join("\n\n")
-  p.url = p.paragraphs_of('README.txt', 0).first.split(/\n/)[1..-1]
-  p.changes = p.paragraphs_of('History.txt', 0..1).join("\n\n")
+  self.summary = 'Create a binary gem, for the current platform.'
+  self.description = "Take a gem file that builds an extension and create a binary gem (useful for production servers without a build chain, Amazon EC2, etc)."
+  
+  self.url = "http://rubyforge.org/projects/gembuilder/"
+  self.changes = IO.read('History.txt')
 end
 
 # vim: syntax=Ruby
