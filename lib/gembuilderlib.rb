@@ -50,7 +50,7 @@ class GemBuilderLib
   end
 
   def build_extensions
-    installer.build_extensions(tmpdir, format.spec)
+    installer.build_extensions
   end
 
   def platform
