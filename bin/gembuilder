@@ -26,19 +26,19 @@ if argv.empty?
   exit 1
 end
 
-argv.each do |gem|
-  unless File.exists?(gem)
-    puts "Skipping #{gem}, file not found."
+argv.each do |gemfile|
+  unless File.exists?(gemfile)
+    puts "Skipping #{gemfile}, file not found."
     next
   end
 
-  gem_builder = GemBuilderLib.new(gem)
+  gem_builder = GemBuilderLib.new(gemfile)
   if skip_pure && gem_builder.pure?
-    puts "Skipping #{gem}, it's a pure ruby gem."
+    puts "Skipping #{gemfile}, it's a pure ruby gem."
     next
   end
 
-  puts "Unpacking #{gem}"
+  puts "Unpacking #{gemfile}"
   gem_builder.unpack_gem
 
   puts "   building extension(s)"

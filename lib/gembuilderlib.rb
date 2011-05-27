@@ -12,8 +12,8 @@ class GemBuilderLib
   OBJEXT = ".#{Config::CONFIG["OBJEXT"]}"
 
   # Helper that will do it all
-  def self.[](gem,conservative=false)
-    gem_builder = GemBuilderLib.new(gem)
+  def self.[](gemfile,conservative=false)
+    gem_builder = GemBuilderLib.new(gemfile)
     gem_builder.unpack_gem
     gem_builder.build_extensions
     gem_builder.fix_gemspec(conservative)
@@ -27,8 +27,8 @@ class GemBuilderLib
     @tmpdir
   end
   
-  def initialize(gem)
-    @gem_name = gem
+  def initialize(gemfile)
+    @gem_name = gemfile
     @installer = Gem::Installer.new(@gem_name)
     @format = Gem::Format.from_file_by_path(@gem_name)
   end
