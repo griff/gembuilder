@@ -53,6 +53,10 @@ class GemBuilderLib
     end
   end
   
+  def pure?
+    spec.extensions.size > 0
+  end
+  
   def unpack_gem
     FileUtils.rm_r(tmpdir) rescue nil
     FileUtils.mkdir_p(tmpdir) rescue nil
