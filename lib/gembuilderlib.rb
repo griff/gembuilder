@@ -64,6 +64,10 @@ class GemBuilderLib
     @platform ||= Gem::Platform.new(Config::CONFIG['arch']).to_s
   end
   
+  def output_file
+    "#{spec.name}-#{spec.version}-#{platform}.gem"
+  end
+  
   def fix_gemspec(conservative = false)
     files = []
     Find.find(tmpdir) do |fname|

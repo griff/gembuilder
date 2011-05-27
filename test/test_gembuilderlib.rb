@@ -36,7 +36,7 @@ class TestGembuilder < Test::Unit::TestCase
     # testing to cleanup -- somebody save me from my own
     # insanity
     @gb.cleanup
-    File.rm('helloc-1.0.0-*.gem') rescue nil
+    FileUtils.rm(@gb.output_file) if File.exists?(@gb.output_file)
   end
 
   def assert_file_exists(fname, msg = "The file #{fname} should exist and does not.")
@@ -54,7 +54,7 @@ class TestGembuilder < Test::Unit::TestCase
   def test_class_doit_all_method
     GemBuilderLib[GEMNAME]
     
-    assert_file_exists("helloc-1.0.0-#{Config::CONFIG['arch']}.gem")   
+    assert_file_exists(@gb.output_file)
     # not sure how to verify that the temp directory is properly cleaned up
     # without adding some odd support for returning the temp directory name
     # that should already be deleted at this point 
@@ -98,7 +98,7 @@ class TestGembuilder < Test::Unit::TestCase
     
     # talk about self referential -- but how else to I make the
     # tests work on different platforms?
-    assert_file_exists("helloc-1.0.0-#{Config::CONFIG['arch']}.gem")
+    assert_file_exists(@gb.output_file)
   end
       
   def test_cleanup
