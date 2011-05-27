@@ -46,7 +46,11 @@ class GemBuilderLib
   end
   
   def spec
-    @spec ||= eval(format.spec.to_ruby)
+    @spec ||= begin 
+      s = eval(format.spec.to_ruby)
+      s.cert_chain = [] unless s.cert_chain
+      s
+    end
   end
   
   def unpack_gem
