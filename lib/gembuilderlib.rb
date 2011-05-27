@@ -40,7 +40,7 @@ class GemBuilderLib
   end
   
   def spec
-    @spec ||= format.spec
+    @spec ||= eval(format.spec.to_ruby)
   end
   
   def unpack_gem
