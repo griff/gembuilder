@@ -77,7 +77,7 @@ class GemBuilderLib
     Find.find(tmpdir) do |fname|
       next if fname == tmpdir
       next if !conservative && File.extname(fname) == OBJEXT 
-      files << fname.sub(Regexp.quote(tmpdir + "/"), '')
+      files << fname.sub(Regexp.new(Regexp.quote(tmpdir + "/")), '')
     end
 
     spec.extensions = []
