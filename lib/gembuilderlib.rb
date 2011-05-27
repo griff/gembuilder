@@ -21,6 +21,12 @@ class GemBuilderLib
     gem_builder.cleanup
   end
   
+  def self.tmpdir(newtmpdir=nil)
+    @tmpdir ||= File.join(Dir.tmpdir, "gembuilder")
+    @tmpdir = newtmpdir if newtmpdir
+    @tmpdir
+  end
+  
   def initialize(gem)
     @gem_name = gem
     @installer = Gem::Installer.new(@gem_name)
@@ -28,7 +34,7 @@ class GemBuilderLib
   end
 
   def tmpdir
-    @tmpdir ||= File.join(Dir.tmpdir, "gembuilder")
+    File.join(self.class.tmpdir, @gem_name)
   end
 
   def installer
