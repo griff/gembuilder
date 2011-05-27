@@ -60,10 +60,8 @@ class GemBuilderLib
   end
 
   def platform
-    # I used to use this to clean up gem names under
-    # darwin, not sure it was a good idea though
-    # Config::CONFIG['arch'].sub(/[\.0-9]*$/, '')
-    Config::CONFIG['arch']
+    # Use Gem::Platform to clean up names under darwin
+    @platform ||= Gem::Platform.new(Config::CONFIG['arch']).to_s
   end
   
   def fix_gemspec(conservative = false)
