@@ -54,7 +54,7 @@ class GemBuilderLib
   end
   
   def pure?
-    spec.extensions.size > 0
+    spec.extensions.size == 0
   end
   
   def unpack_gem
