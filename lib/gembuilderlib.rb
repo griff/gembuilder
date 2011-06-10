@@ -47,9 +47,9 @@ class GemBuilderLib
   
   def spec
     @spec ||= begin 
-      s = eval(format.spec.to_ruby)
-      s.cert_chain = [] unless s.cert_chain
-      s
+      spe = eval(format.spec.to_ruby)
+      spe.cert_chain = [] unless spe.cert_chain
+      spe
     end
   end
   
