@@ -10,8 +10,9 @@ class TestUTF8SpecBug < Test::Unit::TestCase
     # and our eventual use of your file system 
     # slowing the tests
     #
-    Dir.chdir "test" rescue nil 
-    dir = File.expand_path(File.join('..', 'tmp'))
+    @olddir = Dir.pwd
+    Dir.chdir 'test/gems'
+    dir = File.expand_path(File.join('..', '..', 'tmp'))
     Dir.mkdir(dir) unless File.exists?(dir)
     GemBuilderLib.tmpdir(dir)
     @gb = GemBuilderLib.new("#{GEMNAME}.gem")
@@ -23,13 +24,15 @@ class TestUTF8SpecBug < Test::Unit::TestCase
     # insanity
     @gb.cleanup
     FileUtils.rm(@gb.output_file) if File.exists?(@gb.output_file)
+    Dir.chdir @olddir
   end
 
   def assert_file_exists(fname, msg = "The file #{fname} should exist and does not.")
     assert(File.exists?(fname), msg)
   end
   
-  def test_class_doit_all_method
+  # Test with a spec that contains utf-8 characters (it failed on ruby 1.9.2p0 with rubygems 1.8.5)
+  def test_utf8_spec
     GemBuilderLib["#{GEMNAME}.gem"]
     puts @gb.spec.cache_file
     assert_file_exists(@gb.output_file)

@@ -27,7 +27,8 @@ class TestGembuilder < Test::Unit::TestCase
     # and our eventual use of your file system 
     # slowing the tests
     #
-    Dir.chdir "test" rescue nil 
+    @olddir = Dir.pwd
+    Dir.chdir 'test'
     @gb = GemBuilderLib.new(GEMNAME)
   end
   
@@ -37,6 +38,7 @@ class TestGembuilder < Test::Unit::TestCase
     # insanity
     @gb.cleanup
     FileUtils.rm(@gb.output_file) if File.exists?(@gb.output_file)
+    Dir.chdir @olddir
   end
 
   def assert_file_exists(fname, msg = "The file #{fname} should exist and does not.")
