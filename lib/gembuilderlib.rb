@@ -64,7 +64,11 @@ class GemBuilderLib
   
   def spec
     @spec ||= begin 
-      spe = eval(format.spec.to_ruby)
+      spe = format.spec
+      if spe.instance_variable_defined?("@author")
+         spe.author = spe.instance_variable_get("@author")
+      end
+      spe = eval(spe.to_ruby)
       spe.cert_chain = [] unless spe.cert_chain
       spe
     end

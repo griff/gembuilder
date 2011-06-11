@@ -48,4 +48,10 @@ class TestUTF8SpecBug < Test::Unit::TestCase
     assert_file_exists(gb.output_file)
   end
   
+  def test_missing_authors
+    gb = GemBuilderLib.new(File.join(@gemsdir, "diff-lcs-1.1.2.gem"))
+    gb.do_all
+    assert_file_exists(gb.output_file)
+  end
+  
 end
