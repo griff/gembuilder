@@ -23,6 +23,11 @@ class GemBuilderLib
     @tmpdir
   end
   
+  def self.platform
+    # Use Gem::Platform to clean up names under darwin
+    @platform ||= Gem::Platform.new(Config::CONFIG['arch']).to_s
+  end
+  
   def initialize(gemfile)
     @gem_name = gemfile
     @installer = Gem::Installer.new(@gem_name)
@@ -72,8 +77,7 @@ class GemBuilderLib
   end
 
   def platform
-    # Use Gem::Platform to clean up names under darwin
-    @platform ||= Gem::Platform.new(Config::CONFIG['arch']).to_s
+    self.class.platform
   end
   
   def output_file
