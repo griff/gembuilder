@@ -27,9 +27,7 @@ class TestGembuilder < Test::Unit::TestCase
     # and our eventual use of your file system 
     # slowing the tests
     #
-    @olddir = Dir.pwd
-    Dir.chdir 'test'
-    @gb = GemBuilderLib.new(GEMNAME)
+    @gb = GemBuilderLib.new(File.join('test',GEMNAME))
   end
   
   def teardown
@@ -38,7 +36,6 @@ class TestGembuilder < Test::Unit::TestCase
     # insanity
     @gb.cleanup
     FileUtils.rm(@gb.output_file) if File.exists?(@gb.output_file)
-    Dir.chdir @olddir
   end
 
   def assert_file_exists(fname, msg = "The file #{fname} should exist and does not.")
@@ -54,7 +51,7 @@ class TestGembuilder < Test::Unit::TestCase
   end
 
   def test_class_doit_all_method
-    GemBuilderLib[GEMNAME]
+    GemBuilderLib[File.join('test',GEMNAME)]
     
     assert_file_exists(@gb.output_file)
     # not sure how to verify that the temp directory is properly cleaned up
