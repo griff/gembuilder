@@ -41,9 +41,17 @@ class GemBuilderLib
     self.build_gem
     self.cleanup
   end
+  
+  def output_dir
+    @output_dir ||= File.dirname(@gem_name)
+  end
+  
+  def output_dir=(newval)
+    @output_dir = newval
+  end
 
   def tmpdir
-    File.join(self.class.tmpdir, @gem_name)
+    File.join(self.class.tmpdir, File.basename(@gem_name))
   end
 
   def installer
@@ -80,8 +88,12 @@ class GemBuilderLib
     self.class.platform
   end
   
-  def output_file
+  def output
     "#{spec.name}-#{spec.version}-#{platform}.gem"
+  end
+  
+  def output_file
+    File.join(output_dir, output)
   end
   
   def fix_gemspec(conservative = false)
@@ -102,7 +114,7 @@ class GemBuilderLib
     Dir.chdir(tmpdir) do
       gb = Gem::Builder.new(spec)
       gb.build
-      FileUtils.mv Dir.glob("*.gem"), start_dir
+      FileUtils.mv self.output, File.expand_path(self.output_dir, start_dir)
     end
   end
   
