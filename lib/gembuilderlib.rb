@@ -14,11 +14,7 @@ class GemBuilderLib
   # Helper that will do it all
   def self.[](gemfile,conservative=false)
     gem_builder = GemBuilderLib.new(gemfile)
-    gem_builder.unpack_gem
-    gem_builder.build_extensions
-    gem_builder.fix_gemspec(conservative)
-    gem_builder.build_gem
-    gem_builder.cleanup
+    gem_builder.do_all(conservative)
   end
   
   def self.tmpdir(newtmpdir=nil)
@@ -31,6 +27,14 @@ class GemBuilderLib
     @gem_name = gemfile
     @installer = Gem::Installer.new(@gem_name)
     @format = Gem::Format.from_file_by_path(@gem_name)
+  end
+  
+  def do_all(conservative=false)
+    self.unpack_gem
+    self.build_extensions
+    self.fix_gemspec(conservative)
+    self.build_gem
+    self.cleanup
   end
 
   def tmpdir
